@@ -3,32 +3,30 @@
 
 """
 malaria.py
-
-Description: This script will take two input files (malaria.fna and malaria.blastx), 
-and create an output file. The output file will consist mainly of the FASTA file
-but with the protein description (found in the blastx file) added to the header.
-
-The output file needs to be named output.txt and will be saved in your current 
-working directory.
-
-User-defined functions: None
-Non-standrad modules: None
-
-Procedure:
-    
-    
-Input: malaria.fna and malaria.blastx
-Output: output.txt
-
-Usage: ./malaria.py malaria.fna malaria.blastx output.txt
-
 Version: 1.00
 Date: 2024-10-14
 Name: Rebecka Antonsson
 
+How my workflow connects to the FAIR principles:
+Findable: The output file is stored in the current working directory, which is easy to locate. The script is stored on github
+in the same folder as the input files, making it easy to find.
+Accessible: The script can be run from any location as long as the input files are provided with correct paths. 
+Interoperable: The script uses standard file formats (FASTA and tab-delimited text) that can be easily read by other bioinformatics tools.
+The code is also well commented which makes it easier for others to follow and understand all parts of the code. File formats for inputfiles 
+are standard. 
+Reusable: The script is well-documented and can be reused for similar tasks with different input files. The license is MIT, 
+which allows for free use and distribution. 
+
+Motivation for version pinning:
+The only dependencies used are sys, pathlib and os, which are all part of the standard library in Python. 
+There is no need for version pinning in this case.
+Since only standard libraries are used, the only thing that could possibly break the script in the future is if the python version changes.
+But it is still not likley to affect anything, however you can never be sure and the script should be tested if a new python version is released.
 """
 
 import sys
+from pathlib import Path
+import os
 
 try:
     # Loading the content of malaria.blastx.tab into the variable f_bastx
@@ -69,13 +67,13 @@ try:
     # Output file
     
     # Get the current working directory, so that the outputfile can be stored there
-    from pathlib import Path
+    
     current_working_directory=Path.cwd()
         
     # Instead of just adding the path with a +, 
     # this is a more robust way of joing the path 
     # (current working directory + the new file name)
-    import os
+    
     file_path = os.path.join(current_working_directory, "output.txt")
     
     output = open(file_path,"w")
@@ -103,5 +101,3 @@ except FileNotFoundError:
     print("The entered file does not exist")
     sys.exit()
  
-
-
