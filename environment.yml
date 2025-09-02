@@ -1,0 +1,6 @@
+name: malaria-env
+channels:
+  - defaults
+dependencies:
+  - python=3
+prefix: C:\Users\rebbe\anaconda3
